@@ -1,9 +1,9 @@
-;;; npm-run.el --- Run your npm workflows -*- lexical-binding: t; -*-
+;;; bun-run.el --- Run your bun workflows -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2020  Shane Kennedy
+;; Copyright (C) 2024  Shane Kennedy
 
 ;; Author: Shane Kennedy
-;; Homepage: https://github.com/shaneikennedy/npm.el
+;; Homepage: https://github.com/shaneikennedy/bun.el
 ;; Keywords: tools
 ;; Version: 0
 
@@ -21,32 +21,32 @@
 ;; along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 ;;; Commentary:
-;; Functions for using npm run.
+;; Functions for using bun run.
 
 ;;; Code:
-(require 'npm-common)
+(require 'bun-common)
 
-(defconst npm-run--prefix-command "npm run")
+(defconst bun-run--prefix-command "bun run")
 
-(defun npm-run--get-run-command (script-name)
+(defun bun-run--get-run-command (script-name)
   "Construct the shell command for a given SCRIPT-NAME."
-  (concat npm-run--prefix-command " " script-name))
+  (concat bun-run--prefix-command " " script-name))
 
-(defun npm-run--get-scripts (project-dir)
-  "Function to parse package.json in the PROJECT-DIR to find npm scripts."
-  (mapcar 'car (cdr (assoc 'scripts (json-read-file (concat project-dir npm-common--config-file))))))
+(defun bun-run--get-scripts (project-dir)
+  "Function to parse package.json in the PROJECT-DIR to find bun scripts."
+  (mapcar 'car (cdr (assoc 'scripts (json-read-file (concat project-dir bun-common--config-file))))))
 
 
-(defun npm-run--choose-script ()
+(defun bun-run--choose-script ()
   "Let user choose which script to run."
   (interactive)
-  (completing-read "Select script from list: " (npm-run--get-scripts (npm-common--get-project-dir)) nil t))
+  (completing-read "Select script from list: " (bun-run--get-scripts (bun-common--get-project-dir)) nil t))
 
 ;;;###autoload
-(defun npm-run (&optional _args)
+(defun bun-run (&optional _args)
   "Invoke the compile mode with the run prefix-command and ARGS if provided."
-  (interactive (list (npm-common--arguments)))
-  (npm-common--compile (npm-run--get-run-command (npm-run--choose-script))))
+  (interactive (list (bun-common--arguments)))
+  (bun-common--compile (bun-run--get-run-command (bun-run--choose-script))))
 
-(provide 'npm-run)
-;;; npm-run.el ends here
+(provide 'bun-run)
+;;; bun-run.el ends here

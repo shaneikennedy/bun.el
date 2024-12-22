@@ -1,9 +1,9 @@
-;;; npm-init.el --- Run your npm workflows -*- lexical-binding: t; -*-
+;;; bun-init.el --- Run your bun workflows -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2020  Shane Kennedy
 
 ;; Author: Shane Kennedy
-;; Homepage: https://github.com/shaneikennedy/npm.el
+;; Homepage: https://github.com/shaneikennedy/bun.el
 ;; Keywords: tools
 ;; Version: 0
 
@@ -24,25 +24,25 @@
 ;; Functions for initializing a node project.
 
 ;;; Code:
-(require 'npm-common)
+(require 'bun-common)
 
-(defconst npm-init--prefix-command "npm init")
-(defconst npm-init--temp-buffer ".npminit")
+(defconst bun-init--prefix-command "bun init")
+(defconst bun-init--temp-buffer ".buninit")
 
 ;;;###autoload
-(defun npm-init ()
-  "Initialize a project folder as a npm project."
-   (interactive)
-   (save-excursion
-     (let* ((project-root-folder (read-directory-name "Project root :"))
-            (command npm-init--prefix-command))
-      (generate-new-buffer (concat project-root-folder npm-init--temp-buffer))
-      (set-buffer (concat project-root-folder npm-init--temp-buffer))
+(defun bun-init ()
+  "Initialize a project folder as a bun project."
+  (interactive)
+  (save-excursion
+    (let* ((project-root-folder (read-directory-name "Project root :"))
+           (command bun-init--prefix-command))
+      (generate-new-buffer (concat project-root-folder bun-init--temp-buffer))
+      (set-buffer (concat project-root-folder bun-init--temp-buffer))
       (let ((current-prefix-arg '(4)))
         (setq compilation-read-command nil)
         (setq compile-command command)
         (call-interactively #'compile))
-        (kill-buffer project-root-folder))))
+      (kill-buffer project-root-folder))))
 
-(provide 'npm-init)
-;;; npm-init.el ends here
+(provide 'bun-init)
+;;; bun-init.el ends here
