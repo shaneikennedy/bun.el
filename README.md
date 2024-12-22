@@ -2,7 +2,7 @@
 [![Actions Status](https://github.com/shaneikennedy/bun.el/workflows/check/badge.svg)](https://github.com/shaneikennedy/bun.el/actions)
 
 
-This is a bun.sh client for emacs.
+This is a [bun.sh](https://bun.sh/) client for emacs.
 
 This package makes use of [transient.el](https://github.com/magit/transient) to offer an interactive experience with bun that I find to be advantageous for exploration and in general when you aren't totally familiar with bun or your current javascript/typescript project.
 
