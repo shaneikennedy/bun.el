@@ -25,6 +25,6 @@ jobs:
       - uses: leotaku/elisp-check@master
         with:
           check: melpa
-          file: 'npm.el'
+          file: 'bun.el'
           ignore_warnings: false
           warnings_as_errors: false
